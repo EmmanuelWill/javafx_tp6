@@ -112,9 +112,7 @@ public class ChargerGrille {
 	public static void main(String[] args) throws SQLException {
 		ChargerGrille test = new ChargerGrille();
 		
-		//Map<Integer, String> hasher = test.grillesDisponibles();
-		
-		//System.out.println(hasher.get(1));
+	
 		
 		MotsCroisesTP6 jeu = test.extraireGrille(10);
 		

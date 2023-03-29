@@ -17,11 +17,16 @@ public class ControleurV1 {
 	private GridPane grilleMC;
 	
 	@FXML // pour rendre la méthode visible depuis SceneBuilder
-	private void initialize() { 
-		ChargerGrille gc = new ChargerGrille();
+	private void initialize() {
 		
+		
+	}
+	
+	@FXML
+	public void getMc(MotsCroisesTP6 mc) {
+
+		this.mc = mc;
 		try {
-			mc = gc.extraireGrille(10);
 			resetGrid();
 			initGrid();
 			
@@ -29,7 +34,6 @@ public class ControleurV1 {
 			System.out.println(e);
 		}
 	}
-	
 	@FXML
 	public void clicLettre(MouseEvent e) {
 
@@ -44,13 +48,14 @@ public class ControleurV1 {
 	}
 	
 	private void resetGrid() {
-		
 		TextField modeleTF = (TextField) grilleMC.getChildren().get(0);
 		
 		grilleMC.getChildren().clear();
 		
-		for(int i=1; i< mc.getHauteur(); i++) {
-			for(int j=1; j< mc.getLargeur(); j++) {
+		for(int i=1; i <= mc.getHauteur(); i++) {
+			
+			for(int j=1; j <= mc.getLargeur(); j++) {
+				
 				if(!mc.estCaseNoire(i, j)) {
 					TextField newField = new TextField();
 					newField.setPrefWidth(modeleTF.getPrefWidth());
@@ -60,9 +65,11 @@ public class ControleurV1 {
 					{
 						newField.getProperties().put(cle, modeleTF.getProperties().get(cle));
 					}
-					grilleMC.add(newField, i-1, j-1);
+					grilleMC.add(newField, j-1, i-1);
+					
 				}
 			}
+			
 		}
 	}
 	

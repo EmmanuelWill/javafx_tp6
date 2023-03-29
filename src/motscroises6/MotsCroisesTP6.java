@@ -13,7 +13,7 @@ public class MotsCroisesTP6 implements SpecifMotsCroises
 	public MotsCroisesTP6(int hauteur, int largeur)
 	{
 		solution = new Grille<> (hauteur, largeur) ;
-		proposition = new Grille<> (hauteur, largeur) ;
+		proposition = new Grille<StringProperty> (hauteur, largeur) ;
 		horizontal = new Grille<> (hauteur, largeur) ;
 		vertical = new Grille<> (hauteur, largeur) ;
 
@@ -22,7 +22,7 @@ public class MotsCroisesTP6 implements SpecifMotsCroises
 			for (int col=1; col<=getLargeur(); col++)
 			{
 				setCaseNoire(lig, col, true);
-				setProposition(lig, col, ' ');
+				proposition.setCellule(lig, col, new SimpleStringProperty(" "));
 			}
 		}
 	}
@@ -45,7 +45,7 @@ public class MotsCroisesTP6 implements SpecifMotsCroises
 	public boolean estCaseNoire(int lig, int col)
 	{
 		assert coordCorrectes(lig, col) ;
-		return (solution.getCellule(lig, col) == null) ;
+		return (solution.getCellule(lig, col) == ' ') ;
 	}
 
 	public void setCaseNoire(int lig, int col, boolean noire)
@@ -94,11 +94,12 @@ public class MotsCroisesTP6 implements SpecifMotsCroises
 		assert coordCorrectes(lig, col) ;
 		assert !estCaseNoire(lig, col) ;
 		
-		StringProperty a = new SimpleStringProperty();
-		a.set(Character.toString(prop));
+//		StringProperty a = new SimpleStringProperty();
+//		a.set(Character.toString(prop));
 		//StringProperty t =  proposition.getCellule(lig, col);
 		//t.set(Character.toString(prop));
-		proposition.setCellule(lig, col, a);
+//		proposition.setCellule(lig, col, a);
+		proposition.getCellule(lig, col).set(Character.toString(prop));
 	}
 
 	public StringProperty propositionProperty(int lig, int col) {

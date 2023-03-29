@@ -15,6 +15,7 @@ public class MainTP6 extends Application {
 	        primaryStage.setTitle("TP6 binome1-binome2");
 			FXMLLoader loader = new FXMLLoader() ;
             loader.setLocation(MainTP6.class.getResource("VueMenu.fxml"));
+//            loader.setLocation(MainTP6.class.getResource("VueTP6.fxml"));
             Parent root = (Parent) loader.load();
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
