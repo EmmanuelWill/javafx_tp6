@@ -1,5 +1,7 @@
 package motscroises6;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
@@ -44,6 +46,12 @@ public class ControleurV1 {
  
             casse.textProperty().bindBidirectional(mc.propositionProperty(lig, col));
             mc.montrerSolution(lig, col);
+        }else if(e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 1) {
+        	TextField casse = (TextField) e.getSource();
+        	if(casse.getText().equals(" ")) {
+        		casse.clear();
+        	}
+        	
         }
 	}
 	
@@ -65,12 +73,16 @@ public class ControleurV1 {
 					{
 						newField.getProperties().put(cle, modeleTF.getProperties().get(cle));
 					}
+					addTextLimiter(newField, 1);
+
 					grilleMC.add(newField, j-1, i-1);
 					
 				}
 			}
 			
 		}
+		TextField gridTF = (TextField) grilleMC.getChildren().get(0);
+		gridTF.requestFocus();
 	}
 	
 	private void initGrid() {
@@ -111,5 +123,19 @@ public class ControleurV1 {
 		}
 		
 		return texte;
+	}
+	
+	public static void addTextLimiter(TextField tf, int maxLength) {
+	    tf.textProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				if (tf.getText().length() > maxLength) {
+	                String s = tf.getText().substring(0, maxLength);
+	                tf.setText(s);
+	            }
+				
+			}
+	    });
 	}
 }

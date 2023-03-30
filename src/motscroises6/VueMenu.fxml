@@ -5,8 +5,8 @@
 
 <Pane fx:id="menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="329.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="motscroises6.ControleurMenu">
    <children>
-      <Button fx:id="pickGrid" layoutX="106.0" layoutY="78.0" mnemonicParsing="false" onAction="#pickGrid" text="Choisir une grille" />
-      <Button fx:id="quitter" layoutX="131.0" layoutY="114.0" mnemonicParsing="false" onAction="#closeAll" text="Quitter" />
-      <Button fx:id="randomGrid" layoutX="111.0" layoutY="40.0" mnemonicParsing="false" onAction="#randomGrid" text="Grille Aléatoire" />
+      <Button fx:id="pickGrid" layoutX="94.0" layoutY="37.0" mnemonicParsing="false" onAction="#pickGrid" prefHeight="25.0" prefWidth="139.0" text="Choisir une grille" />
+      <Button fx:id="quitter" layoutX="94.0" layoutY="116.0" mnemonicParsing="false" onAction="#closeAll" prefHeight="25.0" prefWidth="139.0" text="Quitter" />
+      <Button fx:id="randomGrid" layoutX="94.0" layoutY="78.0" mnemonicParsing="false" onAction="#randomGrid" prefHeight="25.0" prefWidth="139.0" text="Grille Aléatoire" />
    </children>
 </Pane>

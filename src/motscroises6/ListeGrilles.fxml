@@ -5,11 +5,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="339.0" prefWidth="343.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="motscroises6.ControleurMenu">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="316.0" prefWidth="421.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="motscroises6.ControleurListe">
    <children>
-      <ListView fx:id="gridList" layoutX="70.0" layoutY="80.0" prefHeight="200.0" prefWidth="200.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="70.0" layoutY="54.0" prefHeight="18.0" prefWidth="200.0" text="Sélectionnez une grille">
+      <ListView fx:id="gridList" layoutX="43.0" layoutY="40.0" prefHeight="227.0" prefWidth="334.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="111.0" layoutY="14.0" prefHeight="18.0" prefWidth="200.0" text="Sélectionnez une grille">
          <font>
             <Font size="16.0" />
          </font>
