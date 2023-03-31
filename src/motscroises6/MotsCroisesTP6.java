@@ -94,11 +94,6 @@ public class MotsCroisesTP6 implements SpecifMotsCroises
 		assert coordCorrectes(lig, col) ;
 		assert !estCaseNoire(lig, col) ;
 		
-//		StringProperty a = new SimpleStringProperty();
-//		a.set(Character.toString(prop));
-		//StringProperty t =  proposition.getCellule(lig, col);
-		//t.set(Character.toString(prop));
-//		proposition.setCellule(lig, col, a);
 		proposition.getCellule(lig, col).set(Character.toString(prop));
 	}
 
@@ -111,7 +106,7 @@ public class MotsCroisesTP6 implements SpecifMotsCroises
 	public void montrerSolution(int lig, int col) {
 		assert coordCorrectes(lig, col) ;
 		assert !estCaseNoire(lig, col) ;
-		setProposition(lig, col, getSolution(lig, col));
+		setProposition(lig, col, Character.toUpperCase(getSolution(lig, col)));
 	}
 	
 	public String getDefinition(int lig, int col, boolean horiz)

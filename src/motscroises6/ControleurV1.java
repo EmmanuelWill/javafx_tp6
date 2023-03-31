@@ -2,14 +2,18 @@ package motscroises6;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ControleurV1 {
 	private MotsCroisesTP6 mc;
@@ -17,6 +21,7 @@ public class ControleurV1 {
 	
 	@FXML
 	private GridPane grilleMC;
+	private boolean horizontal = true;
 	
 	@FXML // pour rendre la méthode visible depuis SceneBuilder
 	private void initialize() {
@@ -101,13 +106,117 @@ public class ControleurV1 {
 				tf.setTooltip(new Tooltip(texte));
 				
 				//Montrer solution(1.5)
-				tf.setOnMouseClicked(e -> this.clicLettre(e)); 
+				tf.setOnMouseClicked(e -> this.clicLettre(e));
+
+				tf.setOnKeyPressed(e -> this.moveOn(e));
+				tf.setOnKeyReleased(e -> this.remplirProp(e));
 			}
 			
 		}
 		
 	}
 
+	
+	public void moveOn(KeyEvent e) {
+        TextField maCase = (TextField) e.getSource();
+        int lig = ((int) maCase.getProperties().get("gridpane-row"));
+        int col = ((int) maCase.getProperties().get("gridpane-column"));
+        if (e.getCode() == KeyCode.UP) {
+            this.enHaut(lig, col);
+            horizontal = false;
+        } else if (e.getCode() == KeyCode.DOWN) {
+            this.enBas(lig, col);
+            horizontal = false;
+        } else if (e.getCode() == KeyCode.LEFT) {
+            this.aGauche(lig, col);
+            horizontal = true;
+        } else if (e.getCode() == KeyCode.RIGHT) {
+            this.aDroite(lig, col);
+            horizontal = true;
+        } else if (e.getCode() == KeyCode.BACK_SPACE) {
+            maCase.textProperty().setValue("");
+            if(horizontal){
+                this.aGauche(lig,col);
+            }else {
+                this.enHaut(lig,col);
+            }
+        }
+    }
+    private void enHaut(int lig, int col) {
+        if (lig != 0) {
+            int i = 1;
+            TextField tf = (TextField) getNextField(lig - i, col);
+            while (tf == null && (lig - i) != 0) {
+                i++;
+                tf = (TextField) getNextField(lig - i, col);
+            }
+            tf.requestFocus();
+        }
+    }
+    private void enBas(int lig, int col) {
+        if (lig != grilleMC.getRowCount() - 1) {
+            int i = 1;
+            TextField tf = (TextField) getNextField(lig + i, col);
+            while (tf == null && (lig + i) != grilleMC.getRowCount() - 1) {
+                i++;
+                tf = (TextField) getNextField(lig + i, col);
+            }
+            tf.requestFocus();
+        }
+    }
+    private void aGauche(int lig, int col) {
+        if (col != 0) {
+            int i = 1;
+            TextField tf = (TextField) getNextField(lig, col - 1);
+            while (tf == null && (col - 1) != 0) {
+                i++;
+                tf = (TextField) getNextField(lig, col - i);
+            }
+            tf.requestFocus();
+        }
+    }
+    private void aDroite(int lig, int col) {
+        if (col != grilleMC.getColumnCount() - 1) {
+            int i = 1;
+            TextField tf = (TextField) getNextField(lig, col + 1);
+            while (tf == null && (col + 1) != grilleMC.getColumnCount() - 1) {
+                i++;
+                tf = (TextField) getNextField(lig, col + i);
+            }
+            tf.requestFocus();
+        }
+    }
+    public void remplirProp(KeyEvent e) {
+        TextField maCase = (TextField) e.getSource();
+        int lig = ((int) maCase.getProperties().get("gridpane-row"));
+        int col = ((int) maCase.getProperties().get("gridpane-column"));
+       
+        if (e.getCode().isLetterKey()) {
+            String prop = e.getText().toUpperCase();
+            maCase.textProperty().set(prop);
+            if (horizontal) {
+                this.aDroite(lig, col);
+            } else {
+                this.enBas(lig, col);
+            }
+        }else{
+            maCase.textProperty().set(" ");
+    }
+        
+}
+
+	
+	private Node getNextField(int lig, int col) {
+		
+		for (Node n : grilleMC.getChildren()){ 
+			if(lig == grilleMC.getRowIndex(n) && col == grilleMC.getColumnIndex(n)) {
+				return n;
+			}
+		}
+		return null;
+	}
+	
+	
 	private String getToolTip(int lig, int col) {
 		
 		String horizontal = mc.getDefinition(lig, col, true);

@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
-import motscroises6.MotsCroisesTP6;
 
 public class ChargerGrille {
 
