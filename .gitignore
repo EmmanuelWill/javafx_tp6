@@ -2,4 +2,6 @@
 bin/
 .classpath
 .project
-buildfx.build
+build.fxbuild
+application
+morpion

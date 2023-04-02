@@ -2,7 +2,6 @@ package motscroises6;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
@@ -12,8 +11,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class ControleurV1 {
 	private MotsCroisesTP6 mc;
