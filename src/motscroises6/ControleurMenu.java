@@ -54,12 +54,13 @@ public class ControleurMenu {
 		ChargerGrille gc = new ChargerGrille();
 		try {
 			grilles = gc.grillesDisponibles();
-			List<Integer> keysAsArray = new ArrayList<Integer>(grilles.keySet());
 			Random r = new Random();
+			int randomGrille = r.nextInt(grilles.keySet().size());
+			while (randomGrille == 0) {
+				randomGrille = r.nextInt(grilles.keySet().size());
+			}
 			
-			int randomGrille = r.nextInt(keysAsArray.size());
 			mc = gc.extraireGrille(randomGrille);
-			
 			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("VueTP6.fxml")) ;
 			root = loader.load();
