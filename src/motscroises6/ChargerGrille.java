@@ -28,8 +28,8 @@ public class ChargerGrille {
 		
 			Connection connect;		
 			String url = "jdbc:mysql://mysqln.istic.univ-rennes1.fr/base_bousse?autoReconnect=true&useSSL=false";
-			String user = "user_ehode";
-			String password = "vW85spjgwbNKjrf";
+			String user = "";
+			String password = "";
 			connect = DriverManager.getConnection(url, user, password);
 			
 			return connect;	
